@@ -1,0 +1,275 @@
+$color:rgb(193, 193, 193);
+$textcolor:rgb(61, 61, 61);
+$placeholdercolor:rgb(191, 191, 191);
+
+form {
+  margin: 0 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.step1 {
+  width: 45%;
+  margin-right: 8%;
+}
+
+h1,
+h3 {
+  font-weight: normal;
+}
+
+h1 {
+  text-transform: uppercase;
+  color: rgb(54, 53, 53);
+  font-size: 2.3em;
+}
+
+h3 {
+  color: rgb(106, 106, 106);
+  font-size: 1.5em;
+  margin-top: -13px;
+}
+
+hr {
+  background-color: $color;
+  height: 1px;
+  border: none;
+  margin-left: -30px;
+  width: 105%;
+}
+
+select,
+input,
+textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $color;
+  background-color: inherit;
+  height: 40px;
+  color: $placeholdercolor;
+  font-size: 1.1em;
+  outline: none;
+  margin-top: 10px;
+}
+
+input::placeholder {
+  color: $placeholdercolor;
+}
+
+select:first-child {
+  color: $placeholdercolor;
+}
+
+.mt {
+  margin-bottom: 215px;
+}
+
+label {
+  color: rgb(106, 106, 106);
+  font-size: 0.8em;
+}
+
+textarea {
+  resize: none;
+  margin-top: 5px;
+  border-bottom: 0;
+  font-size: 1.2em;
+  height: 60px;
+  width: 99%;
+}
+
+input[type="text"] {
+  width: 99%;
+  height: 38px;
+}
+
+textarea::placeholder {
+  color: $placeholdercolor;
+}
+
+select:hover,
+input:hover,
+textarea:hover,
+input:focus,
+textarea:focus {
+  border: none;
+  border-bottom: 2px solid rgb(255, 225, 0);
+  color: $textcolor;
+}
+
+.ng-valid {
+  color: $textcolor;
+}
+
+.mb {
+  margin-bottom: 30px;
+}
+
+.form-check {
+  position: relative;
+}
+
+input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+}
+
+input[type=checkbox]:checked+.checked::before {
+  content: "";
+  display: block;
+  position: absolute;
+  text-align: center;
+  height: 20px;
+  width: 20px;
+  left: -36px;
+  top: -2px;
+  background-color: rgb(255, 225, 0);
+  border-radius: 2px;
+  border: 1px solid rgb(255, 225, 0);
+}
+
+input[type=checkbox]:checked+.checked::after {
+  content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>');
+  display: block;
+  position: absolute;
+  left: -32px;
+  top: -4px;
+  font-size: 1.3em;
+}
+
+input[type=checkbox]:checked+.checked {
+  color: $textcolor;
+}
+
+.checked {
+  position: absolute;
+  font-size: 1.1em;
+  top: 6px;
+  left: 40px;
+  color: $placeholdercolor;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+input[type="date"] {
+  width: 20%;
+  margin-top: 0;
+}
+
+.step2 {
+  width: 45%;
+}
+
+.date {
+  color: rgb(91, 91, 91);
+  font-size: 0.8em;
+  margin-top: 20px;
+}
+
+.last {
+  height: 2px;
+  width: 102.5%;
+}
+
+.send,
+.clear {
+  width: 65px;
+  margin-right: 10px;
+  border-radius: 3px;
+}
+
+.btn {
+  margin: 15px 0 10px 45%;
+}
+
+.send {
+  border: 2px solid rgb(20, 143, 20);
+  color: rgb(20, 143, 20);
+}
+
+.clear {
+  border: 2px solid rgb(255, 225, 0);
+  color: rgb(255, 225, 0);
+}
+
+.send:focus,
+.send:hover {
+  border: 2px solid rgb(20, 143, 20);
+  background-color: rgb(20, 143, 20);
+  color: white;
+}
+
+.clear:focus,
+.clear:hover {
+  border: 2px solid rgb(255, 225, 0);
+  background-color: rgb(255, 225, 0);
+  color: white;
+}
+
+.send:disabled {
+  background-color: rgba(20, 143, 20, 0.333);
+}
+
+.alert-danger {
+  color: red;
+}
+
+@media screen and (max-width: 600px) {
+  form {
+    margin-top: 30px;
+  }
+
+  h1 {
+    font-size: 1.2em;
+  }
+
+  h3 {
+    font-size: 1em;
+  }
+
+  select,
+  input,
+  textarea {
+    font-size: 1em;
+    height: 45px;
+  }
+
+  input::placeholder {
+    font-size: 0.6em;
+  }
+
+  textarea {
+    height: 100px;
+    font-size: 0.7em;
+  }
+
+  .checked {
+    font-size: 0.7em;
+  }
+
+  input[type="date"] {
+    width: 70%;
+  }
+
+  .mt {
+    margin-bottom: 236px;
+  }
+
+  input[type="text"] {
+    height: 42px;
+  }
+
+  hr {
+    width: 108%;
+    margin-left: -12px;
+  }
+
+  .last {
+    width: 106.5%;
+  }
+}

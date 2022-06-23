@@ -1,0 +1,103 @@
+<form [formGroup]="orderForm" #f="ngForm" (ngSubmit)="orderForm.valid && Send()">
+  <div class="step1">
+    <h1>Post a job</h1>
+    <h3>Step 1</h3>
+    <hr>
+    <select formControlName="marks" (change)="CheckMark($event)"
+      [ngStyle]="{'border':orderForm.controls['marks'].valid && f.submitted ? '2px solid green' : (orderForm.controls['marks'].invalid && f.submitted ? '2px solid red' : null) }">
+      <option value="" [selected]="true" hidden disabled class="selected">Mark</option>
+      <option *ngFor="let mark of cars" [value]="mark.name">
+        {{ mark.name }}
+      </option>
+    </select>
+    <select formControlName="models"
+      [ngStyle]="{'border':orderForm.controls['models'].valid && f.submitted ? '2px solid green' : (orderForm.controls['models'].invalid && f.submitted ? '2px solid red' : null) }">
+      <option value="" [selected]="true" disabled hidden class="selected">Model</option>
+      <option value="" disabled *ngIf="!ifmodel">Choose the Mark first</option>
+      <option *ngFor="let model of models" [value]="model.name">
+        {{ model.name }}
+      </option>
+    </select>
+    <select formControlName="years"
+      [ngStyle]="{'border':orderForm.controls['years'].valid && f.submitted ? '2px solid green' : (orderForm.controls['years'].invalid && f.submitted ? '2px solid red' : null) }">
+      <option value="" [selected]="true" hidden class="selected">Year</option>
+      <option *ngFor="let year of years" [value]="year">
+        {{ year }}
+      </option>
+    </select>
+    <input type="text" placeholder="What exactly need to be repaired?" formControlName="repaired" [(ngModel)]="repaired"
+      [value]="repaired"
+      [ngStyle]="{'border':orderForm.controls['repaired'].valid && f.submitted ? '2px solid green' : (orderForm.controls['repaired'].invalid && f.submitted ? '2px solid red' : null) }">
+    <div class="alert-danger" *ngIf="orderForm.controls['repaired'].invalid && f.submitted">
+      Please use only letter in English
+    </div>
+    <div class="mt"></div>
+    <label for="description1">Description</label>
+    <textarea name="" formControlName="description1" id="description1"
+      [ngStyle]="{'border':orderForm.controls['description1'].valid && f.submitted ? '2px solid green' : (orderForm.controls['description1'].invalid && f.submitted ? '2px solid red' : null) }"
+      placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus placeat ab, quaerat ducimus commodi ad optio nesciunt voluptate ut quasi veniam quo"></textarea>
+    <div class="alert-danger" *ngIf="orderForm.controls['description1'].invalid && f.submitted">
+      Please use only letter in English
+    </div>
+  </div>
+  <div class="step2"
+    *ngIf="orderForm.controls['marks'].valid && orderForm.controls['models'].valid && orderForm.controls['years'].valid">
+    <h1>Post a job</h1>
+    <h3>Step 2</h3>
+    <hr>
+    <select formControlName="categories" (change)="CheckCategory($event)"
+      [ngStyle]="{'border':orderForm.controls['categories'].valid && f.submitted ? '2px solid green' : (orderForm.controls['categories'].invalid && f.submitted ? '2px solid red' : null) }">
+      <option value="" [selected]="true" hidden disabled class="selected">Category of Work</option>
+      <option *ngFor="let category of categories" [value]="category.name">
+        {{ category.name }}
+      </option>
+    </select>
+    <select formControlName="subcategories"
+      [ngStyle]="{'border':orderForm.controls['subcategories'].valid && f.submitted ? '2px solid green' : (orderForm.controls['subcategories'].invalid && f.submitted ? '2px solid red' : null) }">
+      <option value="" [selected]="true" disabled hidden class="selected">Subcategory</option>
+      <option value="" disabled *ngIf="!ifcategory">Choose the Category first</option>
+      <option *ngFor="let subcategory of subcategories" [value]="subcategory">
+        {{ subcategory }}
+      </option>
+    </select>
+    <select formControlName="emirates" (change)="CheckEmirate($event)"
+      [ngStyle]="{'border':orderForm.controls['emirates'].valid && f.submitted ? '2px solid green' : (orderForm.controls['emirates'].invalid && f.submitted ? '2px solid red' : null) }">
+      <option value="" [selected]="true" hidden class="selected">Select Emirate</option>
+      <option *ngFor="let emirate of emirates" [value]="emirate.name">
+        {{ emirate.name }}
+      </option>
+    </select>
+    <select formControlName="areas" class="mb"
+      [ngStyle]="{'border':orderForm.controls['areas'].valid && f.submitted ? '2px solid green' : (orderForm.controls['areas'].invalid && f.submitted ? '2px solid red' : null) }">
+      <option value="" [selected]="true" hidden class="selected">Select Area</option>
+      <option value="" disabled *ngIf="!ifemirate">Choose the Emirate first</option>
+      <option *ngFor="let area of areas" [value]="area">
+        {{ area }}
+      </option>
+    </select>
+    <div *ngFor="let choice of checks" class="form-check">
+      <input type="checkbox" [value]="choice.value" formControlName="{{choice.formControl}}" id="{{choice.value}}">
+      <label for="{{choice.value}}" class="checked"> {{choice.value}}</label>
+    </div>
+    <div class="flex">
+      <label for="dateOrder" class="date">Desired date of repair</label>
+      <input type="date" id="dateOrder" formControlName="orderDate" value="{{ orderDate  }}"
+        [ngStyle]="{'border':orderForm.controls['orderDate'].valid && f.submitted && !validDate ? '2px solid green' : (orderForm.controls['orderDate'].invalid && f.submitted || validDate ? '2px solid red' : null) }">
+      <div class="alert-danger" *ngIf="validDate && f.submitted">
+        Date must be greater than the current date
+      </div>
+    </div>
+    <label for="description2">Description</label>
+    <textarea name="" id="description2" formControlName="description2"
+      [ngStyle]="{'border':orderForm.controls['description2'].valid && f.submitted ? '2px solid green' : (orderForm.controls['description2'].invalid && f.submitted  ? '2px solid red' : null) }"
+      placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus placeat ab, quaerat ducimus commodi ad optio nesciunt voluptate ut quasi veniam quo"></textarea>
+    <div class="alert-danger" *ngIf="orderForm.controls['description2'].invalid && f.submitted">
+      Please use only letter in English
+    </div>
+  </div>
+  <div class="btn">
+    <input type="submit" value="Send" class="send" [disabled]="orderForm.invalid">
+    <input type="button" value="Clear" class="clear" (click)="Clear()">
+  </div>
+</form>
+<hr class="last">
